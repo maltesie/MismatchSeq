@@ -1,7 +1,8 @@
 module MismatchSeq
 
-using BioSequences
+using BioSequences, GenomicFeatures, BioGenerics
 
+include("sequence.jl")
 include("basecoverage.jl")
 
 end # module MismatchSeq

@@ -20,6 +20,12 @@
 #    ref = Int[(seq[i] in (DNA_A, DNA_T, DNA_G, DNA_C)) ? count[seq[i]][ii] : 0 for (i, ii) in enumerate(r)]
 #    BaseAnnotation(type(feature), name(feature), ref, count[ref][:A][r], count[:T][r], count[:G][r], count[:C][r], count[:Gap][r], count[:Ins][r])
 #end
+#
+#function coverage(feature::Interval{BaseAnnotation})
+#   return feature.metadata.a .+ feature.metadata.t .+ feature.metadata.g .+ feature.metadata.c .+ feature.metadata.gap
+#end
+#
+#refcount(feature::Interval{BaseAnnotation}) = feature.metadata.ref
 
 struct BaseCoverage
     genome::Genome
@@ -193,9 +199,3 @@ function mismatchcontexthist(base_coverage::BaseCoverage, from::Symbol, to::Symb
     end
     return kmer_histograms
 end
-
-function coverage(feature::Interval{BaseAnnotation})
-    return feature.metadata.a .+ feature.metadata.t .+ feature.metadata.g .+ feature.metadata.c .+ feature.metadata.gap
-end
-
-refcount(feature::Interval{BaseAnnotation}) = feature.metadata.ref
