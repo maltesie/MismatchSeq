@@ -1,0 +1,4 @@
+name = "MismatchSeq"
+uuid = "44875b98-82f5-410d-ab63-8c6c890b3e0f"
+authors = ["Malte Siemers <malte.siemers@mailbox.org>"]
+version = "0.1.0"
