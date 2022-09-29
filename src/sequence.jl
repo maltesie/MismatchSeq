@@ -59,16 +59,16 @@ end
 
 function read_genomic_fasta(fasta_file::String)
     genome::Dict{String, LongSequence} = Dict()
-    open(FASTA.Reader, fasta_file) do reader
+    FASTA.Reader(open(fasta_file)) do reader
         for record in reader
-            genome[identifier(record)] = FASTA.sequence(record)
+            genome[FASTA.identifier(record)] = FASTA.sequence(LongDNA{4}, record)
         end
     end
     return genome
 end
 
 function write_genomic_fasta(genome::Dict{String, T}, fasta_file::String) where T <: BioSequence
-    open(FASTA.Writer, fasta_file) do writer
+    FASTA.Writer(fasta_file) do writer
         for (chr, seq) in genome
             write(writer, FASTA.Record(chr, seq))
         end

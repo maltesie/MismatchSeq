@@ -27,6 +27,19 @@
 #
 #refcount(feature::Interval{BaseAnnotation}) = feature.metadata.ref
 
+function hasxatag(data::SubArray{UInt8,1})
+    for i in 1:length(data)-2
+        (0x00 == data[i]) & (0x58 == data[i+1]) & (0x41 == data[i+2]) && (return true)
+    end
+    return false
+end
+
+function hasxatag(record::BAM.Record)
+    return hasxatag(@view(record.data[BAM.auxdata_position(record):BAM.data_size(record)]))
+end
+
+isprimary(record::BAM.Record)::Bool = BAM.flag(record) & 0x900 == 0
+
 struct BaseCoverage
     genome::Genome
     fcount::Dict{String, Dict{Symbol, Vector{Int}}}
@@ -39,7 +52,7 @@ function BaseCoverage(bam_file::String, genome::Genome; include_secondary_alignm
     rcount = Dict(chr=>zeros(Int, 7, length(genome.chroms[chr])) for chr in keys(genome.chroms))
     record = BAM.Record()
     reader = BAM.Reader(open(bam_file))
-    seq = LongDNA{4}(0)
+    seq = LongDNA{4}()
     while !eof(reader)
         read!(reader, record)
         BAM.ismapped(record) || continue
@@ -190,11 +203,12 @@ function mismatchcontexthist(base_coverage::BaseCoverage, from::Symbol, to::Symb
     to in (:A, :T, :G, :C, :Gap, :N, :Ins) || raise(AssertionError("Value for to::Symbol not supported!"))
     kmer_histograms = Dict(LongDNA{4}(c)=>zeros(Int, bins) for c in all_perm([DNA_A, DNA_T, DNA_G, DNA_C], 2*pm+1))
     mpos = mismatchpositions(base_coverage, from, to; ratio_cut)
+    kmer = LongDNA{4}(undef, 2*pm+1)
     for mismatch_interval in mpos
-        p = leftposition(mismatch_interval)
+        p::Int = leftposition(mismatch_interval)
         freq_index = Int(floor(mismatch_interval.metadata[2] * (bins-1))) + 1
-        ref = refname(mismatch_interval)
-        kmer = base_coverage.genome[ref][p-pm:p+pm]
+        copyto!(kmer, 1, view(base_coverage.genome.seq, base_coverage.genome.chroms[mismatch_interval.seqname]), p-pm, (2*pm+1))
+        kmer in keys(kmer_histograms) || continue
         kmer_histograms[kmer][freq_index] += 1
     end
     return kmer_histograms
