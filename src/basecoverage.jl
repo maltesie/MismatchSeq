@@ -201,7 +201,7 @@ all_perm(xs, n) = vec(map(collect, Iterators.product(ntuple(_ -> xs, n)...)))
 function mismatchcontexthist(base_coverage::BaseCoverage, from::Symbol, to::Symbol; pm=2, bins=20, ratio_cut=0.0)
     from in (:A, :T, :G, :C, :Gap, :N, :Ins) || raise(AssertionError("Value for from::Symbol not supported!"))
     to in (:A, :T, :G, :C, :Gap, :N, :Ins) || raise(AssertionError("Value for to::Symbol not supported!"))
-    kmer_histograms = Dict(LongDNA{4}(c)=>zeros(Int, bins) for c in all_perm([DNA_A, DNA_T, DNA_G, DNA_C], 2*pm+1))
+    kmer_histograms = Dict(LongDNA{4}(c)=>zeros(Int, bins) for c in all_perm([DNA_A, DNA_T, DNA_G, DNA_C], 2*pm+1) if Symbol(c[1+pm]) === from)
     mpos = mismatchpositions(base_coverage, from, to; ratio_cut)
     kmer = LongDNA{4}(undef, 2*pm+1)
     for mismatch_interval in mpos
