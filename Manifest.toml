@@ -1,6 +1,6 @@
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.8.0"
+julia_version = "1.8.2"
 manifest_format = "2.0"
 project_hash = "60b3c014da4d64e0d0eb73e5e1b6d8668eb67464"
 
@@ -24,9 +24,9 @@ uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 
 [[deps.BioAlignments]]
 deps = ["BioGenerics", "BioSequences", "BioSymbols", "IntervalTrees", "LinearAlgebra"]
-git-tree-sha1 = "f30cd74d51a368bf3895d877215513fa6d36722f"
+git-tree-sha1 = "707e7e02cfb91a2b09e8f89df0204603b026df88"
 uuid = "00701ae9-d1dc-5365-b64a-a3a3ebf5695e"
-version = "2.2.0"
+version = "3.0.0"
 
 [[deps.BioGenerics]]
 deps = ["TranscodingStreams"]
@@ -35,15 +35,16 @@ uuid = "47718e42-2ac5-11e9-14af-e5595289c2ea"
 version = "0.1.2"
 
 [[deps.BioSequences]]
-deps = ["BioSymbols", "Random", "Twiddle"]
-git-tree-sha1 = "523d40090604deae32078e3bf3d8570ab1cb585b"
+deps = ["BioSymbols", "Random", "SnoopPrecompile", "Twiddle"]
+git-tree-sha1 = "90d2f278c4a20d43a885feb4847b8694d1ba4a60"
 uuid = "7e6ae17a-c86d-528c-b3b9-7f778a29fe59"
-version = "3.1.0"
+version = "3.1.1"
 
 [[deps.BioSymbols]]
-git-tree-sha1 = "6f59deb6e86841a75188721c567fad81fbc305f1"
+deps = ["SnoopPrecompile"]
+git-tree-sha1 = "2052c3ec7c41b69efa0e9ff7e2734aa6658d4c40"
 uuid = "3c28c6f8-a34d-59c4-9654-267d177fcfa9"
-version = "5.1.1"
+version = "5.1.2"
 
 [[deps.ChainRulesCore]]
 deps = ["Compat", "LinearAlgebra", "SparseArrays"]
@@ -65,9 +66,9 @@ version = "0.7.0"
 
 [[deps.Compat]]
 deps = ["Dates", "LinearAlgebra", "UUIDs"]
-git-tree-sha1 = "5856d3031cdb1f3b2b6340dfdc66b6d9a149a374"
+git-tree-sha1 = "aaabba4ce1b7f8a9b34c015053d3b1edf60fa49c"
 uuid = "34da2185-b29b-5c13-b0c7-acf172513d20"
-version = "4.2.0"
+version = "4.4.0"
 
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
@@ -75,9 +76,9 @@ uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
 version = "0.5.2+0"
 
 [[deps.DataAPI]]
-git-tree-sha1 = "1106fa7e1256b402a86a8e7b15c00c85036fef49"
+git-tree-sha1 = "e08915633fcb3ea83bf9d6126292e5bc5c739922"
 uuid = "9a962f9c-6df0-11e9-0e5d-c546b8b5ee8a"
-version = "1.11.0"
+version = "1.13.0"
 
 [[deps.DataStructures]]
 deps = ["Compat", "InteractiveUtils", "OrderedCollections"]
@@ -91,9 +92,9 @@ uuid = "ade2ca70-3891-5945-98fb-dc099432e06a"
 
 [[deps.DocStringExtensions]]
 deps = ["LibGit2"]
-git-tree-sha1 = "5158c2b41018c5f7eb1470d558127ac274eca0c9"
+git-tree-sha1 = "c36550cb29cbe373e95b3f40486b9a4148f89ffd"
 uuid = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
-version = "0.9.1"
+version = "0.9.2"
 
 [[deps.FASTX]]
 deps = ["Automa", "BioGenerics", "BioSequences", "ScanByte", "StringViews", "TranscodingStreams"]
@@ -195,9 +196,9 @@ uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
 version = "0.7.0"
 
 [[deps.SIMD]]
-git-tree-sha1 = "7dbc15af7ed5f751a82bf3ed37757adf76c32402"
+git-tree-sha1 = "bc12e315740f3a36a6db85fa2c0212a848bd239e"
 uuid = "fdea26ae-647d-5447-a871-4b548cad5224"
-version = "3.4.1"
+version = "3.4.2"
 
 [[deps.ScanByte]]
 deps = ["Libdl", "SIMD"]
@@ -208,11 +209,16 @@ version = "0.3.3"
 [[deps.Serialization]]
 uuid = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
 
+[[deps.SnoopPrecompile]]
+git-tree-sha1 = "f604441450a3c0569830946e5b33b78c928e1a85"
+uuid = "66db9d55-30c0-4569-8b51-7e840670fc0c"
+version = "1.0.1"
+
 [[deps.SortingAlgorithms]]
 deps = ["DataStructures"]
-git-tree-sha1 = "b3363d7460f7d098ca0912c69b082f75625d7508"
+git-tree-sha1 = "a4ada03f999bd01b3a25dcaa30b2d929fe537e00"
 uuid = "a2af1166-a08f-5f64-846c-94a0d3cef48c"
-version = "1.0.1"
+version = "1.1.0"
 
 [[deps.SparseArrays]]
 deps = ["LinearAlgebra", "Random"]
@@ -235,9 +241,9 @@ uuid = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 version = "0.33.21"
 
 [[deps.StringViews]]
-git-tree-sha1 = "ac5ab9fa38d95857460e2f988d1a5c0de1ff34e3"
+git-tree-sha1 = "609585ed628a4cd46f4c142762be37f5ced5dc7d"
 uuid = "354b36f9-a18e-4713-926e-db85100087ba"
-version = "1.0.2"
+version = "1.0.3"
 
 [[deps.Test]]
 deps = ["InteractiveUtils", "Logging", "Random", "Serialization"]
@@ -263,9 +269,9 @@ uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
 
 [[deps.XAM]]
 deps = ["Automa", "BGZFStreams", "BioAlignments", "BioGenerics", "BioSequences", "GenomicFeatures", "Indexes", "Printf", "TranscodingStreams"]
-path = "/home/abc/.julia/dev/XAM"
+git-tree-sha1 = "634c3177fdf7d52498d4b947080bc73be833eeab"
 uuid = "d759349c-bcba-11e9-07c2-5b90f8f05f7c"
-version = "0.2.8"
+version = "0.3.1"
 
 [[deps.Zlib_jll]]
 deps = ["Libdl"]
